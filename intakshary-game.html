@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{background:rgba(200,190,10,0.5);}
+		.result{width:33.33%; height:auto; box-sizing:border-box; float:left;}
+		#center{position:absolute; top:40%; left:40%; transform:translate(-40% -40%);}
+		button{width:50%; height:100px; border-radius:10px; box-shadow:4px4px 10px 1px white,-4px -4px 10px 1px white; background:rgba(20,20,10,0.5); color:white; outline:2px solid black;}
+		button:disabled{background:gray; color:rgba(50,50,50,1);}
+		@media screen and (max-width:800px){
+			body{
+				background:red;
+				color:white;
+			}
+			button{
+				width:80%;
+				height:auto;
+			}
+		}
+	</style>
+	<script type="text/javascript">
+		var first=prompt("Inter First Player Name");
+		var second=prompt("Inter Second Player Name");
+	</script>
+</head>
+<body>
+	<div class="result">
+		<center>
+		<button class="btnlayer1" style="float:left;"><script type="text/javascript">
+		document.write(`First Player ${first}`);
+	</script>
+		</button>
+	</center>
+	</div>
+	<div class="result">
+		<center>
+		<button class="show">Show Result</button>
+	</center>
+	</div>
+	<div class="result">
+		<center>
+		<button class="btnlayer2" style="float:right;"><script type="text/javascript">
+		document.write(`Second Player ${second}`);
+	</script></button>
+</center>
+	</div>
+	
+	
+	<div id="center" style="clear:both; text-align:center; margin:200px 0px 0px 0px; font-size:30px;"><h1 class="player" align="center"></h1></div>
+<script type="text/javascript">
+	var l=0;
+	var r=0;
+	document.querySelector(".btnlayer1").addEventListener("click",random1);
+	document.querySelector(".btnlayer2").addEventListener("click",random2);
+	document.querySelector(".show").addEventListener("click",showresult);
+	function random1(){
+	var a=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+	// var a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+	l+=1;
+	var b=Math.floor(Math.random()*25)+1;
+	// console.clear();
+	// console.log(b);
+	document.querySelector(".player").innerHTML="";
+	document.querySelector(".player").innerHTML=a[b];
+	console.log(l);
+	document.querySelector(".btnlayer1").setAttribute("disabled","");
+	document.querySelector(".btnlayer2").removeAttribute("disabled");
+	document.querySelector(".show").removeAttribute("disabled");
+}
+function random2(){
+	var a=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+	// var a=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+	r+=1;
+	var b=Math.floor(Math.random()*25)+1;
+	// console.clear();
+	// console.log(b);
+	console.log(r);
+	document.querySelector(".player").innerHTML="";
+	document.querySelector(".player").innerHTML=a[b];
+	document.querySelector(".btnlayer2").setAttribute("disabled","");
+	document.querySelector(".btnlayer1").removeAttribute("disabled");
+	document.querySelector(".show").removeAttribute("disabled");
+}
+if(l==0 || r==0){
+	document.querySelector(".show").setAttribute("disabled","");
+}else{
+	document.querySelector(".show").removeAttribute("disabled");
+}
+function showresult(){
+	document.querySelector(".btnlayer1").setAttribute("disabled","");
+	document.querySelector(".btnlayer2").setAttribute("disabled","");
+	document.querySelector(".player").innerHTML="First Player "+l+" And The Last Player "+r;
+	var compare1=(r<l);
+	var compare2=(l<r);
+	if(l<r){
+		document.querySelector(".player").innerHTML="";
+		document.querySelector(".player").innerHTML="First Player "+first+" Win";
+	}
+	if(l>r){
+		document.querySelector(".player").innerHTML="";
+		document.querySelector(".player").innerHTML="Second Player "+second+" Win";
+	}
+}
+</script>
+</body>
+</html>
